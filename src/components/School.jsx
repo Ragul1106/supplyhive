@@ -6,13 +6,6 @@ import { Link } from "react-router-dom";
 import banner from "../assets/images/ss_banner.jpg";
 import { SchoolProducts } from "../data/schoolData";
 
-// const categories = [
-//     "Office Basics",
-//     "Files & Folders",
-//     "Paper & Notebooks",
-//     "Pens & Writing",
-//     "School Supplies",
-// ];
 
 const priceFilters = [
     { label: "Rs. 50-100", min: 50, max: 100 },
@@ -21,7 +14,7 @@ const priceFilters = [
     { label: "Rs. 300-500", min: 300, max: 500 },
 ];
 
-const OfficeBasics = () => {
+const School = () => {
     const [selectedPrices, setSelectedPrices] = useState([priceFilters[0].label]);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [addedId, setAddedId] = useState(null);
@@ -63,82 +56,65 @@ const OfficeBasics = () => {
                 </p>
             </div>
             <div className="flex items-center justify-between relative">
-                    {/* Categories button */}
-                    <button
-                      className="flex items-center text-black font-bold px-5 md:static absolute left-2 top-2 md:top-auto md:left-auto"
-                      onClick={() => setSidebarOpen(!sidebarOpen)}
-                    >
-                      <Menu size={20} className="mr-2" />
-                      Categories
-                    </button>
-            
-                    {/* Center heading */}
-                    <h2 className="text-lg font-bold mx-auto hidden md:block">
-                      Office Basics
-                    </h2>
-            
-                    {/* For mobile view show below Categories */}
-                    <h2 className="text-lg font-bold text-center w-full mt-12 md:hidden">
-                      Office Basics
-                    </h2>
-                  </div>
 
-                {/* {sidebarOpen && (
-                    <div className="absolute left-4 top-12 bg-white shadow-lg rounded-lg w-48 z-30">
-                        <ul className="divide-y divide-gray-200">
-                            {categories.map((c, i) => (
-                                <li key={i}>
-                                    <a
-                                        href={`/${c
-                                            .toLowerCase()
-                                            .replace(/ & /g, "-")
-                                            .replace(/\s+/g, "-")}`}
-                                        className="block px-4 py-2 hover:bg-gray-100 text-sm font-medium"
-                                    >
-                                        {c}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                )} */}
-            {/* </div> */}
-
-            <div className="flex">
-                <div
-                    className={`fixed md:static z-20 w-64 p-4 transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
-                        } md:translate-x-0 transition-transform duration-300`}
+                <button
+                    className="flex items-center text-black font-bold px-5 md:static absolute left-2 top-2 md:top-auto md:left-auto"
+                    onClick={() => setSidebarOpen(!sidebarOpen)}
                 >
+                    <Menu size={20} className="mr-2" />
+                    Categories
+                </button>
+
+                <h2 className="text-lg font-bold mx-auto hidden md:block">
+                    School Supplies
+                </h2>
+
+                <h2 className="text-lg font-bold text-center w-full mt-12 md:hidden">
+                    School Supplies
+                </h2>
+            </div>
+            <div className="relative md:grid md:grid-cols-[16rem_1fr]">
+
+                {sidebarOpen && (
+                    <div
+                        className="fixed inset-0 bg-black/40 z-30 md:hidden"
+                        onClick={() => setSidebarOpen(false)}
+                        aria-hidden="true"
+                    />
+                )}
+
+                <aside
+                    className={`p-4 z-40 transition-transform duration-300
+    ${sidebarOpen ? "translate-x-0 translate-y-23 md:translate-y-0" : "-translate-x-full"} 
+    fixed inset-y-0 left-0 md:static md:translate-x-0 md:w-64`}
+                    role="complementary"
+                    aria-label="Sidebar navigation and filters"
+                >
+
                     <div className="bg-[#097afa] px-6 py-2 mb-10 rounded-xl text-white">
-                        <h2 className="text-lg font-bold mb-4">Categories</h2>
-                        <ul className="space-y-2 mb-6">
-                            <li className="cursor-pointer hover:underline">
-                                <Link to="/shop">Office Basics</Link>
-                            </li>
-                            <li className="cursor-pointer hover:underline">
-                                <Link to="/files">Files & Folders</Link>
-                            </li>
-                            <li className="cursor-pointer hover:underline">
-                                <Link to="/paper">Paper & Notebooks</Link>
-                            </li>
-                            <li className="cursor-pointer hover:underline">
-                                <Link to="/pen">Pens & Writing</Link>
-                            </li>
-                            <li className="cursor-pointer hover:underline">
-                                <Link to="/school">School Supplies</Link>
-                            </li>
+                        <div className="flex items-center justify-between mb-4">
+
+                            <button
+                                className="md:hidden cursor-pointer text-gray-500 hover:text-gray-700"
+                                onClick={() => setSidebarOpen(false)}
+                            >
+                                ✕
+                            </button>
+                        </div>
+                        <ul className="space-y-2">
+                            <li><Link to="/shop" className="cursor-pointer hover:underline" onClick={() => setSidebarOpen(false)}>Office Basics</Link></li>
+                            <li><Link to="/files" className="cursor-pointer hover:underline" onClick={() => setSidebarOpen(false)}>Files & Folders</Link></li>
+                            <li><Link to="/paper" className="cursor-pointer hover:underline" onClick={() => setSidebarOpen(false)}>Paper & Notebooks</Link></li>
+                            <li><Link to="/pen" className="cursor-pointer hover:underline" onClick={() => setSidebarOpen(false)}>Pens & Writing</Link></li>
+                            <li><Link to="/school" className="cursor-pointer text-black font-bold hover:underline" onClick={() => setSidebarOpen(false)}>School Supplies</Link></li>
                         </ul>
                     </div>
-
 
                     <div className="bg-[#097afa] px-6 py-2 mb-10 rounded-xl text-white">
                         <h2 className="text-lg font-bold mb-2">Filter by Price</h2>
-                        <div className="space-y-2 ms-5">
+                        <div className="space-y-2">
                             {priceFilters.map((filter, i) => (
-                                <label
-                                    key={i}
-                                    className="flex items-center space-x-2 cursor-pointer"
-                                >
+                                <label key={i} className="flex items-center space-x-2 cursor-pointer">
                                     <input
                                         type="checkbox"
                                         checked={selectedPrices.includes(filter.label)}
@@ -150,12 +126,11 @@ const OfficeBasics = () => {
                             ))}
                         </div>
                     </div>
-                </div>
+                </aside>
 
-                <div className="flex-1 p-4 md:px-8">
+                <main className="relative z-10 md:z-auto flex-1 p-4 md:px-8">
                     <p className="mb-4 text-gray-600">
-                        Showing Result 1-{filteredProducts.length} of{" "}
-                        {filteredProducts.length} results
+                        Showing Result 1-{filteredProducts.length} of {filteredProducts.length} results
                     </p>
 
                     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -165,7 +140,11 @@ const OfficeBasics = () => {
                                 className="relative overflow-visible bg-[#7aabf5] rounded-xl shadow-md hover:shadow-lg transition"
                             >
                                 <Link to={`/product/${p.id}`}>
-                                    <img src={p.img} alt={p.name} className="w-full h-48 rounded-b-2xl object-cover" />
+                                    <img
+                                        src={p.img}
+                                        alt={p.name}
+                                        className="w-full h-48 rounded-b-2xl object-cover"
+                                    />
                                 </Link>
 
                                 <div className="p-4 bg-[#7aabf5] text-center">
@@ -185,7 +164,7 @@ const OfficeBasics = () => {
                                     <div className="relative inline-block">
                                         <button
                                             onClick={() => handleAddToCart(p)}
-                                            className="mt-3 bg-white px-4 py-2 rounded-lg font-semibold border hover:bg-gray-100"
+                                            className="mt-3 bg-white px-4 py-2 cursor-pointer rounded-lg font-semibold border hover:bg-gray-100"
                                         >
                                             Add to Cart
                                         </button>
@@ -200,10 +179,10 @@ const OfficeBasics = () => {
                             </div>
                         ))}
                     </div>
-                </div>
+                </main>
             </div>
         </div>
     );
 };
 
-export default OfficeBasics;
+export default School;
