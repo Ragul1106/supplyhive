@@ -33,6 +33,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import DummyPage from "./components/DummyPage";
 
 import { Toaster } from "sonner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const App = () => {
@@ -82,6 +84,7 @@ const App = () => {
           <Footer />
         </div>
         <Toaster richColors position="top-center" />
+        <ToastContainer position="top-right" autoClose={3000} />
       </Router>
     </CartProvider>
   );

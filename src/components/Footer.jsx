@@ -137,25 +137,31 @@ export default function Footer() {
           <h3 className="font-semibold mb-4">Information</h3>
           <ul className="space-y-2 text-gray-600">
             <li>
-              <Link to="/location" {...S("Location", "https://picsum.photos/id/1021/800/400", "Find stores")} className="hover:text-black transition">
+              <Link to="/contact" className="hover:text-black transition">
                 Location
               </Link>
             </li>
             <li>
-              <Link to="/email" {...S("Email", "https://picsum.photos/id/1060/800/400", "Write to us")} className="hover:text-black transition">
+              <a
+                href="mailto:support@supplyhive.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-black transition"
+              >
                 Email
-              </Link>
+              </a>
+
             </li>
             <li>
-              <Link to="/social" {...S("Social Media", "https://picsum.photos/id/1019/800/400", "Follow us")} className="hover:text-black transition">
+              <p className="hover:text-black transition">
                 Social Media
-              </Link>
+              </p>
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="flex gap-6 mt-10 mx-10 justify-center md:justify-end">
+      <div className="flex gap-6 mt-3 mx-10 justify-center md:justify-end">
         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
           <FaInstagram size={26} className="hover:text-pink-500 transition" />
         </a>

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
 import { useNavigate, useLocation } from "react-router-dom";
-
 import { SuccessOverlay } from "./SuccessOverlay";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Billing() {
   const { cartItems } = useCart();
@@ -18,7 +18,42 @@ export default function Billing() {
     0
   );
 
+  const [formData, setFormData] = useState({
+    name: "",
+    address: "",
+    city: "",
+    postalCode: "",
+  });
+
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const validateForm = () => {
+    if (!formData.name.trim()) {
+      toast.error(" Please enter your name");
+      return false;
+    }
+    if (!formData.address.trim()) {
+      toast.error(" Please enter your street address");
+      return false;
+    }
+    if (!formData.city.trim()) {
+      toast.error(" Please enter your city");
+      return false;
+    }
+    if (!formData.postalCode.trim()) {
+      toast.error(" Please enter your postal code");
+      return false;
+    }
+    return true;
+  };
+
   const handlePlaceOrder = () => {
+    if (!validateForm()) return; 
+
     const selectedPayment =
       document.querySelector('input[name="payment"]:checked')?.value ||
       "Cash on Delivery";
@@ -32,7 +67,15 @@ export default function Billing() {
 
     localStorage.setItem(
       "orderItems",
-      JSON.stringify(items.map(({ id, name, price, quantity = 1, img }) => ({ id, name, price, quantity, img })))
+      JSON.stringify(
+        items.map(({ id, name, price, quantity = 1, img }) => ({
+          id,
+          name,
+          price,
+          quantity,
+          img,
+        }))
+      )
     );
 
     setShowSuccess(true);
@@ -42,13 +85,11 @@ export default function Billing() {
     return () => clearTimeout(t);
   };
 
-  const [showSuccess, setShowSuccess] = React.useState(false);
-
   return (
     <div className="min-h-screen w-full mt-20 text-gray-900">
       <div className="mx-auto max-w-5xl px-6 py-10">
-
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          {/* Left: Billing Form */}
           <div className="rounded-2xl border-2 border-black p-6">
             <h2 className="text-3xl font-semibold tracking-tight mb-6">
               Billing Details
@@ -58,6 +99,9 @@ export default function Billing() {
               <div>
                 <label className="block text-lg font-medium mb-2">Name</label>
                 <input
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   placeholder="Enter your name"
                   className="w-full rounded-xl bg-[#78A7FF]/80 text-gray-900 placeholder-gray-800 font-medium px-4 py-3 outline-none focus:ring-2 focus:ring-blue-400"
                 />
@@ -68,6 +112,9 @@ export default function Billing() {
                   Street Address
                 </label>
                 <input
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
                   placeholder="Enter your street address"
                   className="w-full rounded-xl bg-[#78A7FF]/80 text-gray-900 placeholder-gray-800 font-medium px-4 py-3 outline-none focus:ring-2 focus:ring-blue-400"
                 />
@@ -78,6 +125,9 @@ export default function Billing() {
                   Town/City
                 </label>
                 <input
+                  name="city"
+                  value={formData.city}
+                  onChange={handleChange}
                   placeholder="Enter your city"
                   className="w-full rounded-xl bg-[#78A7FF]/80 text-gray-900 placeholder-gray-800 font-medium px-4 py-3 outline-none focus:ring-2 focus:ring-blue-400"
                 />
@@ -88,6 +138,9 @@ export default function Billing() {
                   Postal Code
                 </label>
                 <input
+                  name="postalCode"
+                  value={formData.postalCode}
+                  onChange={handleChange}
                   placeholder="Enter postal code"
                   className="w-full rounded-xl bg-[#78A7FF]/80 text-gray-900 placeholder-gray-800 font-medium px-4 py-3 outline-none focus:ring-2 focus:ring-blue-400"
                 />
@@ -95,6 +148,7 @@ export default function Billing() {
             </form>
           </div>
 
+          {/* Right: Order Summary */}
           <div className="space-y-6">
             <div className="rounded-2xl border-2 border-black">
               <div className="p-6">
@@ -143,6 +197,7 @@ export default function Billing() {
           </div>
         </div>
 
+        {/* Place Order Button */}
         <div className="mt-8 flex w-full justify-center">
           <button
             onClick={handlePlaceOrder}
@@ -151,8 +206,12 @@ export default function Billing() {
             Place order
           </button>
         </div>
+
         {showSuccess && <SuccessOverlay />}
       </div>
+
+      {/* Toastify container */}
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 }

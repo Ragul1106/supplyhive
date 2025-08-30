@@ -6,8 +6,14 @@ import {
     EnvelopeIcon,
     PhoneIcon,
 } from "@heroicons/react/24/outline";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ContactPage() {
+    const handleSubmit = (e) => {
+    e.preventDefault();
+    toast.success("Your message has been submitted! We’ll get back to you soon.");
+  };
     return (
         <div className="min-h-screen bg-white text-gray-900 mt-20">
             <div className="mx-auto max-w-5xl px-4 py-8">
@@ -81,7 +87,9 @@ export default function ContactPage() {
                         We are always happy to be of service; be sure to listen to the prompt to help direct to the right person.
                     </p>
 
-                    <form className="mt-8 space-y-6 flex flex-col justify-center">
+                    <form
+                     onSubmit={handleSubmit}
+                     className="mt-8 space-y-6 flex flex-col justify-center">
                         <div className="mx-auto grid max-w-3xl grid-cols-1 gap-10 place-items-center sm:grid-cols-2">
               
                             <label className="w-full max-w-xs text-start ">

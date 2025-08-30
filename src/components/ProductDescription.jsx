@@ -5,6 +5,8 @@ import { penProducts } from "../data/penData";
 import { SchoolProducts } from "../data/schoolData";
 import { fileProducts } from "../data/fileData";
 import { paperProducts } from "../data/paperData";
+import { FeaturedProductsData } from "../data/featuredProductData";
+import { backToSchoolProducts } from "../data/backToSchoolData";
 import { useCart } from "../context/CartContext";
 
 const ProductDescription = () => {
@@ -13,7 +15,8 @@ const ProductDescription = () => {
   const numId = Number(id);
 
   const allProducts = React.useMemo(
-    () => [...officeProducts, ...penProducts, ...SchoolProducts, ...fileProducts, ...paperProducts],
+    () => [...officeProducts, ...penProducts, ...SchoolProducts, 
+      ...fileProducts, ...paperProducts, ...backToSchoolProducts, ...FeaturedProductsData],
     []
   );
 
