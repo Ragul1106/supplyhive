@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 import banner from "../assets/images/f_banner.jpg";
 import { fileProducts } from "../data/fileData";
 
-const categories = [
-    "Office Basics",
-    "Files & Folders",
-    "Paper & Notebooks",
-    "Pens & Writing",
-    "School Supplies",
-];
+// const categories = [
+//     "Office Basics",
+//     "Files & Folders",
+//     "Paper & Notebooks",
+//     "Pens & Writing",
+//     "School Supplies",
+// ];
 
 const priceFilters = [
     { label: "Rs. 50-100", min: 50, max: 100 },
@@ -62,20 +62,27 @@ const OfficeBasics = () => {
                     "Where Ideas Begin – Shop Smart, Stay Sharp!"
                 </p>
             </div>
-            <div className="relative flex items-center mb-4 h-12 px-4">
-                <button
-                    className="flex items-center text-black font-bold"
-                    onClick={() => setSidebarOpen(!sidebarOpen)}
-                >
-                    <Menu size={20} className="mr-2" />
-                    Categories
-                </button>
-
-                <h2 className="absolute left-1/2 transform -translate-x-1/2 text-lg font-bold">
-                    Files & Folders
-                </h2>
-
-                {sidebarOpen && (
+            <div className="flex items-center justify-between relative">
+                    {/* Categories button */}
+                    <button
+                      className="flex items-center text-black font-bold px-5 md:static absolute left-2 top-2 md:top-auto md:left-auto"
+                      onClick={() => setSidebarOpen(!sidebarOpen)}
+                    >
+                      <Menu size={20} className="mr-2" />
+                      Categories
+                    </button>
+            
+                    {/* Center heading */}
+                    <h2 className="text-lg font-bold mx-auto hidden md:block">
+                      Office Basics
+                    </h2>
+            
+                    {/* For mobile view show below Categories */}
+                    <h2 className="text-lg font-bold text-center w-full mt-12 md:hidden">
+                      Office Basics
+                    </h2>
+                  </div>
+                {/* {sidebarOpen && (
                     <div className="absolute left-4 top-12 bg-white shadow-lg rounded-lg w-48 z-30">
                         <ul className="divide-y divide-gray-200">
                             {categories.map((c, i) => (
@@ -93,8 +100,8 @@ const OfficeBasics = () => {
                             ))}
                         </ul>
                     </div>
-                )}
-            </div>
+                )} */}
+            {/* </div> */}
 
             <div className="flex">
                 <div
