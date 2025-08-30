@@ -1,9 +1,12 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useCart } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 import noteImg from "../assets/images/sticky_notes.png";
 
 export default function CartPage() {
+   useEffect(() => {
+      document.title = 'Cart | SupplyHive';
+    }, []);
   const { cartItems, updateQuantity, removeFromCart } = useCart();
   const navigate = useNavigate();
   const subtotal = cartItems.reduce(

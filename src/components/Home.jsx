@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Banner from '../components/Banner'
 import StationerySection from '../components/StationerySection'
 import ProductCategories from '../components/ProductCategories'
@@ -9,6 +9,9 @@ import BackToSchool from "../components/BackToSchool";
 import FeaturedProduct from "../components/FeaturedProduct";
 
 export default function Home() {
+   useEffect(() => {
+      document.title = 'Home | SupplyHive';
+    }, []);
 
   return (
      <> 

@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "sonner";
 
 export default function RideWithUsPage() {
+  useEffect(() => {
+    document.title = 'Ride With Us | SupplyHive';
+  }, []);
   const [formData, setFormData] = useState({
     name: "",
     email: "",

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
@@ -22,6 +22,9 @@ const priceFilters = [
 ];
 
 const OfficeBasics = () => {
+   useEffect(() => {
+      document.title = 'Shop | SupplyHive';
+    }, []);
   const [selectedPrices, setSelectedPrices] = useState([priceFilters[0].label]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 

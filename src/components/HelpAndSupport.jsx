@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function HelpSupport() {
+   useEffect(() => {
+      document.title = 'Help & Support | SupplyHive';
+    }, []);
   const [formData, setFormData] = useState({
     name: "",
     email: "",

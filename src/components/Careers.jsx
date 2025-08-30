@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { motion } from "framer-motion";
 
 export default function Careers() {
+   useEffect(() => {
+      document.title = 'Careers | SupplyHive';
+    }, []);
   return (
     <div className="w-full mt-20">
       <section className="bg-gradient-to-r from-purple-600 to-pink-500 text-white py-20 px-6 text-center">

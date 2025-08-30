@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { officeProducts } from "../data/officeData";
 import { penProducts } from "../data/penData";
@@ -10,6 +10,9 @@ import { backToSchoolProducts } from "../data/backToSchoolData";
 import { useCart } from "../context/CartContext";
 
 const ProductDescription = () => {
+   useEffect(() => {
+      document.title = 'Product Description | SupplyHive';
+    }, []);
   const navigate = useNavigate();
   const { id } = useParams();
   const numId = Number(id);

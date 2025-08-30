@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import phone from "../assets/images/phone.jpg";
 import map from "../assets/images/map.jpg";
 import {
@@ -10,6 +10,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function ContactPage() {
+
+     useEffect(() => {
+        document.title = 'Contact Us | SupplyHive';
+      }, []);
     const handleSubmit = (e) => {
     e.preventDefault();
     toast.success("Your message has been submitted! We’ll get back to you soon.");

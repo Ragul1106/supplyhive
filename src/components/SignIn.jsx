@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useEffect} from "react";
 import banner from "../assets/images/signin.jpg";
 
 export default function SigninPage() {
+  useEffect(() => {
+    document.title = 'Sign In | SupplyHive';
+  }, []);
   return (
     <div className="min-h-screen bg-white text-gray-900 mt-20">
       <div className="mx-auto max-w-5xl px-4 py-10">

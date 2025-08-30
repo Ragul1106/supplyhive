@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import l1 from "../assets/images/l1.jpg";
@@ -14,6 +14,9 @@ const partners = [
 ];
 
 export default function PartnerPage() {
+  useEffect(() => {
+    document.title = 'Become a Partner | SupplyHive';
+  }, []);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
   const handleSubmit = (e) => {

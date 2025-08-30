@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import SchoolTools from "../components/SchoolTools";
 import PenPencil from "../components/PenPencil";
 import AllStationery from "../components/AllStationery";
@@ -7,7 +7,9 @@ import Bag from "../components/bag";
 import banner from "../assets/images/about_banner.jpg";
 
 export default function About() {
-
+ useEffect(() => {
+    document.title = 'About Us | SupplyHive';
+  }, []);
   return (
       <div className="min-h-screen mt-30 ">
            <div className="w-full mb-6">

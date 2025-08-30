@@ -1,9 +1,12 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useCart } from "../context/CartContext";
 import TrackingActions from "./TrackingActions";
 import banner from '../assets/images/tracking_banner.jpg';
 
 export default function Tracking() {
+   useEffect(() => {
+      document.title = 'Tracking | SupplyHive';
+    }, []);
   const { cartItems } = useCart();
   const paymentMethod =
     localStorage.getItem("paymentMethod") || "Cash on Delivery";

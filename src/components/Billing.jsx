@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "../context/CartContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import { SuccessOverlay } from "./SuccessOverlay";
@@ -6,6 +6,9 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Billing() {
+  useEffect(() => {
+    document.title = 'Billing | SupplyHive';
+  }, []);
   const { cartItems } = useCart();
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -52,7 +55,7 @@ export default function Billing() {
   };
 
   const handlePlaceOrder = () => {
-    if (!validateForm()) return; 
+    if (!validateForm()) return;
 
     const selectedPayment =
       document.querySelector('input[name="payment"]:checked')?.value ||

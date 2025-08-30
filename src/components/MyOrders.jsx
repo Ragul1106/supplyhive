@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useCart } from "../context/CartContext";
 import banner from "../assets/images/diary.jpg";
 
 export default function MyOrders() {
+  useEffect(() => {
+    document.title = 'My Orders | SupplyHive';
+  }, []);
   const { cartItems } = useCart();
 
   return (
