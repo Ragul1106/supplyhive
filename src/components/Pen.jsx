@@ -24,7 +24,7 @@ const priceFilters = [
 const OfficeBasics = () => {
     const [selectedPrices, setSelectedPrices] = useState([priceFilters[0].label]);
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [showModal, setShowModal] = useState(null);
+    const [addedId, setAddedId] = useState(null);
 
     const { addToCart } = useCart();
 
@@ -46,8 +46,8 @@ const OfficeBasics = () => {
 
     const handleAddToCart = (product) => {
         addToCart(product);
-        setShowModal(product.id);
-        setTimeout(() => setShowModal(null), 2000);
+        setAddedId(product.id);
+        setTimeout(() => setAddedId(null), 2000);
     };
 
     return (
@@ -56,7 +56,7 @@ const OfficeBasics = () => {
                 <img
                     src={banner}
                     alt="Office Banner"
-                    className="w-full h-80 max-w-5xl mx-auto rounded-lg shadow-md"
+                    className="w-full p-2 md:h-90 max-w-5xl mx-auto rounded-2xl"
                 />
                 <p className="text-center mt-3 text-lg font-semibold text-gray-700">
                     "Where Ideas Begin – Shop Smart, Stay Sharp!"
@@ -72,7 +72,7 @@ const OfficeBasics = () => {
                 </button>
 
                 <h2 className="absolute left-1/2 transform -translate-x-1/2 text-lg font-bold">
-                    Office Basics
+                    Pen & Writtings
                 </h2>
 
                 {sidebarOpen && (
@@ -154,46 +154,44 @@ const OfficeBasics = () => {
                         {filteredProducts.map((p) => (
                             <div
                                 key={p.id}
-                                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition"
+                                className="relative overflow-visible bg-white rounded-xl shadow-md hover:shadow-lg transition"
                             >
                                 <Link to={`/product/${p.id}`}>
-                                    <img
-                                        src={p.img}
-                                        alt={p.name}
-                                        className="w-full h-48 object-cover"
-                                    />
+                                    <img src={p.img} alt={p.name} className="w-full h-48 object-cover" />
                                 </Link>
+
                                 <div className="p-4 bg-[#7aabf5] text-center">
                                     <Link to={`/product/${p.id}`}>
                                         <h3 className="font-semibold hover:underline">{p.name}</h3>
                                     </Link>
+
                                     <div className="flex justify-center my-2">
                                         {Array.from({ length: p.rating }).map((_, i) => (
-                                            <span key={i} className="text-[#fae823] text-4xl">
-                                                ★
-                                            </span>
+                                            <span key={i} className="text-[#fae823] text-4xl">★</span>
                                         ))}
                                     </div>
 
                                     <p className="font-bold">Rs. {p.price}</p>
                                     <p className="font-bold text-sm">{p.bulkOffer}</p>
+                                    <div className="relative inline-block">
+                                        <button
+                                            onClick={() => handleAddToCart(p)}
+                                            className="mt-3 bg-white px-4 py-2 rounded-lg font-semibold border hover:bg-gray-100"
+                                        >
+                                            Add to Cart
+                                        </button>
 
-                                    <button
-                                        onClick={() => handleAddToCart(p)}
-                                        className="mt-3 bg-white px-4 py-2 rounded-lg font-semibold border hover:bg-gray-100"
-                                    >
-                                        Add to Cart
-                                    </button>
+                                        {addedId === p.id && (
+                                            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 bg-green-100 text-green-800 px-3 py-1.5 rounded-lg shadow font-medium whitespace-nowrap z-20">
+                                                Added to Cart
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
+
                         ))}
                     </div>
-
-                    {showModal && (
-                        <div className="fixed bottom-5 right-5 bg-green-100 text-green-800 px-4 py-2 rounded-lg shadow-lg font-medium z-50">
-                            Added to Cart
-                        </div>
-                    )}
                 </div>
             </div>
         </div>

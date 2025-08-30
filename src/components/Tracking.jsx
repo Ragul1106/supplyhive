@@ -1,7 +1,7 @@
 import React from "react";
 import { useCart } from "../context/CartContext";
-import Stepper from "./Stepper";
-import banner from '../assets/images/diary.jpg';
+import TrackingActions from "./TrackingActions";
+import banner from '../assets/images/tracking_banner.jpg';
 
 export default function Tracking() {
   const { cartItems } = useCart();
@@ -35,7 +35,7 @@ export default function Tracking() {
         <img
           src={banner}
           alt="Banner"
-          className="w-full h-120 object-cover max-w-5xl mx-auto rounded-lg "
+          className="w-full p-2 md:h-100 object-contain md:object-cover max-w-5xl mx-auto rounded-lg "
         />
       </div>
       <div className="mx-auto max-w-7xl px-6 py-10">
@@ -49,7 +49,7 @@ export default function Tracking() {
           Rs.{orderTotal}
         </p>
 
-        <Stepper steps={steps} />
+        <TrackingActions steps={steps} />
 
         <div className="flex flex-col items-center mt-10 w-full">
           <div className="border-2 border-gray-400 rounded-xl p-4 mb-2 w-[80%] md:w-[50%]">

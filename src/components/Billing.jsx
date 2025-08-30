@@ -2,6 +2,9 @@ import React from "react";
 import { useCart } from "../context/CartContext";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import { SuccessOverlay } from "./SuccessOverlay";
+
+
 export default function Billing() {
   const { cartItems } = useCart();
   const navigate = useNavigate();
@@ -29,15 +32,22 @@ export default function Billing() {
 
     localStorage.setItem(
       "orderItems",
-      JSON.stringify(items.map(({ id, name, price, quantity = 1 }) => ({ id, name, price, quantity })))
+      JSON.stringify(items.map(({ id, name, price, quantity = 1, img }) => ({ id, name, price, quantity, img })))
     );
 
-    navigate("/order-summary");
+    setShowSuccess(true);
+    const t = setTimeout(() => {
+      navigate("/order-summary");
+    }, 3000);
+    return () => clearTimeout(t);
   };
+
+  const [showSuccess, setShowSuccess] = React.useState(false);
 
   return (
     <div className="min-h-screen w-full mt-20 text-gray-900">
       <div className="mx-auto max-w-5xl px-6 py-10">
+
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           <div className="rounded-2xl border-2 border-black p-6">
             <h2 className="text-3xl font-semibold tracking-tight mb-6">
@@ -141,6 +151,7 @@ export default function Billing() {
             Place order
           </button>
         </div>
+        {showSuccess && <SuccessOverlay />}
       </div>
     </div>
   );
@@ -153,7 +164,7 @@ function RadioRow({ label, defaultChecked = false }) {
         <input
           type="radio"
           name="payment"
-          value={label} 
+          value={label}
           defaultChecked={defaultChecked}
           className="peer sr-only"
         />

@@ -1,11 +1,16 @@
 import React, { useState } from "react";
-import { FaSearch, FaShoppingCart, FaUser, FaBars, FaTimes } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
+import { MdOutlineShoppingCart } from "react-icons/md";
 import { useCart } from "../context/CartContext";
+import AuthModal from "./AuthModal";
+import { UserMenu } from "./UserMenu";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
   const { cartItems } = useCart();
 
   return (
@@ -21,13 +26,54 @@ export default function Navbar() {
           <span className="font-bold text-lg sm:text-xl lg:text-2xl">Supplyhive</span>
         </div>
 
+
         <div className="hidden lg:flex items-center gap-6 sm:gap-8 xl:gap-10 text-base xl:text-lg">
-          <Link to="/" className="hover:text-blue-600 transition">Home</Link>
-          <Link to="/shop" className="hover:text-blue-600 transition">Shop</Link>
-          <Link to="/about" className="hover:text-blue-600 transition">About us</Link>
-          <Link to="/contact" className="hover:text-blue-600 transition">Contact</Link>
-          <Link to="/signin" className="hover:text-blue-600 transition">Login/Register</Link>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? "text-blue-600 font-semibold" : "hover:text-blue-600 transition"
+            }
+            end
+          >
+            Home
+          </NavLink>
+
+          <NavLink
+            to="/shop"
+            className={({ isActive }) =>
+              isActive ? "text-blue-600 font-semibold" : "hover:text-blue-600 transition"
+            }
+          >
+            Shop
+          </NavLink>
+
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              isActive ? "text-blue-600 font-semibold" : "hover:text-blue-600 transition"
+            }
+          >
+            About us
+          </NavLink>
+
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              isActive ? "text-blue-600 font-semibold" : "hover:text-blue-600 transition"
+            }
+          >
+            Contact
+          </NavLink>
+
+          <button
+            type="button"
+            onClick={() => setAuthOpen(true)}
+            className="hover:text-blue-600 cursor-pointer transition"
+          >
+            Login/Register
+          </button>
         </div>
+
 
         <div className="flex items-center gap-6 sm:gap-8 lg:gap-10">
           <div className="hidden lg:flex items-center bg-blue-500 rounded-full px-3 py-1.5 w-60 xl:w-72">
@@ -40,7 +86,7 @@ export default function Navbar() {
           </div>
 
           <Link to="/cart" className="relative cursor-pointer">
-            <FaShoppingCart className="text-2xl sm:text-3xl" />
+            <MdOutlineShoppingCart className="text-2xl sm:text-3xl" />
             {cartItems.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
                 {cartItems.reduce((sum, item) => sum + item.quantity, 0)}
@@ -48,7 +94,7 @@ export default function Navbar() {
             )}
           </Link>
 
-          <FaUser className="text-xl sm:text-2xl cursor-pointer" />
+          <UserMenu />
 
           <button
             className="lg:hidden text-2xl sm:text-3xl ml-2"
@@ -77,6 +123,7 @@ export default function Navbar() {
           </div>
         </div>
       )}
+      {authOpen && <AuthModal onClose={() => setAuthOpen(false)} />}
     </nav>
   );
 }

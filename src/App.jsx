@@ -17,14 +17,22 @@ import SigninPage from "./components/SignIn";
 import ContactPage from "./components/Contact";
 import MyOrders from "./components/MyOrders";
 import Tracking from "./components/Tracking";
-import Stepper from "./components/Stepper";
+
+
+import Team from "./components/Team";
+import Partner from "./components/Partner";
+import Career from "./components/Careers";
+import RideWithUsPage from "./components/RideWithUs";
+import HelpAndSupport from "./components/HelpAndSupport";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+import SupplyhiveCorporate from "./components/SupplyhiveCorporate";
+import TermsAndConditions from "./components/TermsAndConditions";
+import CookiePolicy from "./components/CookiePolicy";
 import ScrollToTop from "./components/ScrollToTop";
 
+import DummyPage from "./components/DummyPage";
 
-
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
+import { Toaster } from "sonner";
 
 
 const App = () => {
@@ -48,12 +56,32 @@ const App = () => {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/order-summary" element={<MyOrders />} />
             <Route path="/track-order" element={<Tracking />} />
-            <Route path="/stepper" element={<Stepper />} />
             <Route path="/product/:id" element={<ProductDescription />} />
+
+            <Route path="/team" element={<Team />} />
+            <Route path="/corporate" element={<SupplyhiveCorporate />} />
+            <Route path="/careers" element={<Career />} />
+            <Route path="/partner" element={<Partner />} />
+            <Route path="/help" element={<HelpAndSupport />} />
+            <Route path="/ride" element={<RideWithUsPage />} />
+            <Route path="/terms" element={<TermsAndConditions />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/cookies" element={<CookiePolicy />} />
+
+            <Route path="/coimbatore" element={<DummyPage />} />
+            <Route path="/bengaluru" element={<DummyPage />} />
+            <Route path="/chennai" element={<DummyPage />} />
+            <Route path="/kolkata" element={<DummyPage />} />
+
+
+
+
+
+
           </Routes>
           <Footer />
         </div>
-        <ToastContainer />
+        <Toaster richColors position="top-center" />
       </Router>
     </CartProvider>
   );
