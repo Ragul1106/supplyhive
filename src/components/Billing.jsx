@@ -70,15 +70,7 @@ export default function Billing() {
 
     localStorage.setItem(
       "orderItems",
-      JSON.stringify(
-        items.map(({ id, name, price, quantity = 1, img }) => ({
-          id,
-          name,
-          price,
-          quantity,
-          img,
-        }))
-      )
+      JSON.stringify(items)
     );
 
     setShowSuccess(true);
@@ -92,7 +84,6 @@ export default function Billing() {
     <div className="min-h-screen w-full mt-20 text-gray-900">
       <div className="mx-auto max-w-5xl px-6 py-10">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {/* Left: Billing Form */}
           <div className="rounded-2xl border-2 border-black p-6">
             <h2 className="text-3xl font-semibold tracking-tight mb-6">
               Billing Details
