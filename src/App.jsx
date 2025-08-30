@@ -1,6 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
+
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./components/Home";
@@ -27,65 +31,97 @@ import HelpAndSupport from "./components/HelpAndSupport";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import SupplyhiveCorporate from "./components/SupplyhiveCorporate";
 import TermsAndConditions from "./components/TermsAndConditions";
+import ProtectedRoute from "./components/ProtectedRoute";
 import CookiePolicy from "./components/CookiePolicy";
 import ScrollToTop from "./components/ScrollToTop";
 
 import DummyPage from "./components/DummyPage";
 
 import { Toaster } from "sonner";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
 const App = () => {
   return (
     <CartProvider>
-      <Router>
-        <ScrollToTop />
-        <div className="flex flex-col font-roboto min-h-screen">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/shop" element={<ShopPage />} />
-            <Route path="/pen" element={<Pen />} />
-            <Route path="/school" element={<School />} />
-            <Route path="/files" element={<File />} />
-            <Route path="/paper" element={<Paper />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/billing" element={<Billing />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/signin" element={<SigninPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/order-summary" element={<MyOrders />} />
-            <Route path="/track-order" element={<Tracking />} />
-            <Route path="/product/:id" element={<ProductDescription />} />
-
-            <Route path="/team" element={<Team />} />
-            <Route path="/corporate" element={<SupplyhiveCorporate />} />
-            <Route path="/careers" element={<Career />} />
-            <Route path="/partner" element={<Partner />} />
-            <Route path="/help" element={<HelpAndSupport />} />
-            <Route path="/ride" element={<RideWithUsPage />} />
-            <Route path="/terms" element={<TermsAndConditions />} />
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-            <Route path="/cookies" element={<CookiePolicy />} />
-
-            <Route path="/coimbatore" element={<DummyPage />} />
-            <Route path="/bengaluru" element={<DummyPage />} />
-            <Route path="/chennai" element={<DummyPage />} />
-            <Route path="/kolkata" element={<DummyPage />} />
+      <AuthProvider>
+        <Router>
+          <ScrollToTop />
+          <div className="flex flex-col font-roboto min-h-screen">
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/shop" element={<ShopPage />} />
+              <Route path="/pen" element={<Pen />} />
+              <Route path="/school" element={<School />} />
+              <Route path="/files" element={<File />} />
+              <Route path="/paper" element={<Paper />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/signin" element={<SigninPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              {/* <Route path="/billing" element={<Billing />} />
+              <Route path="/order-summary" element={<MyOrders />} />
+              <Route path="/track-order" element={<Tracking />} /> */}
+              <Route path="/product/:id" element={<ProductDescription />} />
+              
 
 
 
 
+              <Route
+                path="/billing"
+                element={
+                  <ProtectedRoute>
+                    <Billing />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/order-summary"
+                element={
+                  <ProtectedRoute>
+                    <MyOrders />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/track-order"
+                element={
+                  <ProtectedRoute>
+                    <Tracking />
+                  </ProtectedRoute>
+                }
+              />
 
 
-          </Routes>
-          <Footer />
-        </div>
-        <Toaster richColors position="top-center" />
-        <ToastContainer position="top-right" autoClose={3000} />
-      </Router>
+
+
+              <Route path="/team" element={<Team />} />
+              <Route path="/corporate" element={<SupplyhiveCorporate />} />
+              <Route path="/careers" element={<Career />} />
+              <Route path="/partner" element={<Partner />} />
+              <Route path="/help" element={<HelpAndSupport />} />
+              <Route path="/ride" element={<RideWithUsPage />} />
+              <Route path="/terms" element={<TermsAndConditions />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/cookies" element={<CookiePolicy />} />
+
+              <Route path="/coimbatore" element={<DummyPage />} />
+              <Route path="/bengaluru" element={<DummyPage />} />
+              <Route path="/chennai" element={<DummyPage />} />
+              <Route path="/kolkata" element={<DummyPage />} />
+
+
+
+            </Routes>
+            <Footer />
+          </div>
+          <Toaster richColors position="top-center" />
+          <ToastContainer position="top-right" autoClose={3000} />
+        </Router>
+      </AuthProvider>
     </CartProvider>
   );
 };
