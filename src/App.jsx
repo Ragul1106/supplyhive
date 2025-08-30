@@ -31,7 +31,7 @@ import HelpAndSupport from "./components/HelpAndSupport";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import SupplyhiveCorporate from "./components/SupplyhiveCorporate";
 import TermsAndConditions from "./components/TermsAndConditions";
-import ProtectedRoute from "./components/ProtectedRoute";
+import AuthPage from "./components/AuthPage";
 import CookiePolicy from "./components/CookiePolicy";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -65,7 +65,7 @@ const App = () => {
               <Route path="/order-summary" element={<MyOrders />} />
               <Route path="/track-order" element={<Tracking />} /> */}
               <Route path="/product/:id" element={<ProductDescription />} />
-              
+
 
 
 
@@ -73,25 +73,25 @@ const App = () => {
               <Route
                 path="/billing"
                 element={
-                  <ProtectedRoute>
+                  <AuthPage>
                     <Billing />
-                  </ProtectedRoute>
+                  </AuthPage>
                 }
               />
               <Route
                 path="/order-summary"
                 element={
-                  <ProtectedRoute>
+                  <AuthPage>
                     <MyOrders />
-                  </ProtectedRoute>
+                  </AuthPage>
                 }
               />
               <Route
                 path="/track-order"
                 element={
-                  <ProtectedRoute>
+                  <AuthPage>
                     <Tracking />
-                  </ProtectedRoute>
+                  </AuthPage>
                 }
               />
 

@@ -21,14 +21,14 @@ const FeaturedProducts = () => {
         Featured Products
       </h2>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+      <div className="grid gap-26 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
         {FeaturedProductsData.map((p) => (
           <div
             key={p.id}
-            className="relative overflow-visible bg-white rounded-xl shadow-md hover:shadow-lg transition"
+            className="relative overflow-visible bg-[#7aabf5] rounded-xl shadow-md hover:shadow-lg transition"
           >
             <Link to={`/product/${p.id}`}>
-              <img src={p.img} alt={p.name} className="w-full h-48 object-cover" />
+              <img src={p.img} alt={p.name} className="w-full h-48 rounded-b-2xl object-cover" />
             </Link>
 
             <div className="p-4 bg-[#7aabf5] text-center">
@@ -45,11 +45,10 @@ const FeaturedProducts = () => {
               <p className="font-bold">Rs. {p.price}</p>
               <p className="font-bold text-sm">{p.bulkOffer}</p>
 
-              {/* Anchor wrapper for the popover */}
               <div className="relative inline-block">
                 <button
                   onClick={() => handleAddToCart(p)}
-                  className="mt-3 bg-white px-4 py-2 rounded-lg font-semibold border hover:bg-gray-100"
+                  className="mt-3 bg-white px-4 py-2 cursor-pointer rounded-lg font-semibold border hover:bg-gray-100"
                 >
                   Add to Cart
                 </button>
