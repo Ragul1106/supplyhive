@@ -154,10 +154,10 @@ const OfficeBasics = () => {
                         {filteredProducts.map((p) => (
                             <div
                                 key={p.id}
-                                className="relative overflow-visible bg-white rounded-xl shadow-md hover:shadow-lg transition"
+                                className="relative overflow-visible bg-[#7aabf5] rounded-xl shadow-md hover:shadow-lg transition"
                             >
                                 <Link to={`/product/${p.id}`}>
-                                    <img src={p.img} alt={p.name} className="w-full h-48 object-cover" />
+                                    <img src={p.img} alt={p.name} className="w-full h-48 rounded-b-2xl object-cover" />
                                 </Link>
 
                                 <div className="p-4 bg-[#7aabf5] text-center">

@@ -1,5 +1,4 @@
 import React, {useEffect} from "react";
-import { useCart } from "../context/CartContext";
 import banner from "../assets/images/diary.jpg";
 
 function Toast({ message }) {
