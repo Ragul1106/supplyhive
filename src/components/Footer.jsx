@@ -5,8 +5,8 @@ import playstore from "../assets/images/playstore.png";
 import appstore from "../assets/images/applestore.png";
 import chennai from "../assets/images/chennai.avif";
 import Bengaluru from "../assets/images/bengaluru.jpg";
-import Coimbatore from "../assets/images/Kolkata.jpg";
-import kolkata from "../assets/images/Kolkata.jpg";
+import Coimbatore from "../assets/images/kolkata.jpg";
+import kolkata from "../assets/images/kolkata.jpg";
 
 export default function Footer() {
   const S = (title, img, cta = "Back to Home", description) => ({
